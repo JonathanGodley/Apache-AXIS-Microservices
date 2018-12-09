@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://localhost:8080/currency/CurrencyService/Conversion.jws" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://localhost:8080/currency/CurrencyService/Conversion.jws" xmlns:intf="http://localhost:8080/currency/CurrencyService/Conversion.jws" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema targetNamespace="http://localhost:8080/currency/CurrencyService/Conversion.jws" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOf_xsd_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="listRatesRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="convertResponse">
+
+      <wsdl:part name="convertReturn" type="xsd:double"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="rateOfRequest">
+
+      <wsdl:part name="fromCurrencyCode" type="xsd:string"/>
+
+      <wsdl:part name="toCurrencyCode" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="listRatesResponse">
+
+      <wsdl:part name="listRatesReturn" type="impl:ArrayOf_xsd_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="rateOfResponse">
+
+      <wsdl:part name="rateOfReturn" type="xsd:double"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="convertRequest">
+
+      <wsdl:part name="fromCurrencyCode" type="xsd:string"/>
+
+      <wsdl:part name="toCurrencyCode" type="xsd:string"/>
+
+      <wsdl:part name="amount" type="xsd:double"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Conversion">
+
+      <wsdl:operation name="convert" parameterOrder="fromCurrencyCode toCurrencyCode amount">
+
+         <wsdl:input message="impl:convertRequest" name="convertRequest"/>
+
+         <wsdl:output message="impl:convertResponse" name="convertResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listRates">
+
+         <wsdl:input message="impl:listRatesRequest" name="listRatesRequest"/>
+
+         <wsdl:output message="impl:listRatesResponse" name="listRatesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="rateOf" parameterOrder="fromCurrencyCode toCurrencyCode">
+
+         <wsdl:input message="impl:rateOfRequest" name="rateOfRequest"/>
+
+         <wsdl:output message="impl:rateOfResponse" name="rateOfResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ConversionSoapBinding" type="impl:Conversion">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="convert">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="convertRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="convertResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:8080/currency/CurrencyService/Conversion.jws" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listRates">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="listRatesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="listRatesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:8080/currency/CurrencyService/Conversion.jws" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="rateOf">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="rateOfRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://DefaultNamespace" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="rateOfResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost:8080/currency/CurrencyService/Conversion.jws" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ConversionService">
+
+      <wsdl:port binding="impl:ConversionSoapBinding" name="Conversion">
+
+         <wsdlsoap:address location="http://localhost:8080/currency/CurrencyService/Conversion.jws"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
